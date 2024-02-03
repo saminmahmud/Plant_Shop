@@ -33,6 +33,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         account.set_password(password)
         account.is_active = False
         account.save()
+        user_account = UserAccount.objects.create(user=account, balance=0)
         return account
     
 class UserLoginSerializer(serializers.Serializer):
