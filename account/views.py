@@ -33,7 +33,7 @@ class UserRegistrationApiView(APIView):
             print("token ", token)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             print("uid ", uid)
-            confirm_link = f"https://plant-shop-9cnk.onrender.com/active/{uid}/{token}"
+            confirm_link = f"https://plant-shop-9cnk.onrender.com/account/active/{uid}/{token}"
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
             
