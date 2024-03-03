@@ -14,7 +14,7 @@ from rest_framework.authtoken.models import Token
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.shortcuts import redirect
-
+from django.http import HttpResponseRedirect
 
 class UserAccountViewset(viewsets.ModelViewSet):
     queryset = models.UserAccount.objects.all()
@@ -54,9 +54,11 @@ def activate(request, uid64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return redirect('login')
+        # return redirect('login')
+        return HttpResponseRedirect('https://fascinating-seahorse-d8f166.netlify.app/login')
     else:
-        return redirect('register')
+        # return redirect('register')
+        return HttpResponseRedirect('https://fascinating-seahorse-d8f166.netlify.app/register')
     
 
 class UserLoginApiView(APIView):
